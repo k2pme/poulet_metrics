@@ -1,6 +1,6 @@
 {
   "name": "poulet",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Mesure du temps actif, événements et bugs pour rémunérer les testeurs (Web, RGPD, anti-fraude).",
   "license": "MIT",
   "type": "module",
