@@ -86,11 +86,13 @@ function scheduleHeartbeats() {
     const loop = () => {
         if (!session) return;
         if (!analyticsOn()) return; // consent required
+        // @ts-ignore
         const idle = (now() - getLastActivity()) >= config.billing.idleSec * 1000;
         const vis = document.visibilityState === 'visible';
         const active = vis && !idle && session.leader;
         const fp = fingerprintLite();
 
+        // @ts-ignore
         if (Math.random() <= config.sampling.heartbeats && active) {
             const hb: HeartbeatPayload = {
                 type: 'heartbeat',
@@ -108,9 +110,11 @@ function scheduleHeartbeats() {
             enqueue(hb);
         }
 
+        // @ts-ignore
         const next = jitterMs(config.billing.heartbeatSec * 1000, 0.1);
         hbTimer = window.setTimeout(loop, next);
     };
+    // @ts-ignore
     hbTimer = window.setTimeout(loop, jitterMs(config.billing.heartbeatSec * 1000, 0.1));
 }
 

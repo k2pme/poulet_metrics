@@ -1,24 +1,42 @@
 {
-  "name": "@poulet/metrics",
-  "version": "0.1.0",
+  "name": "poulet",
+  "version": "0.1.4",
   "description": "Mesure du temps actif, événements et bugs pour rémunérer les testeurs (Web, RGPD, anti-fraude).",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
+  "module": "dist/index.js",
   "unpkg": "dist/index.global.js",
   "jsdelivr": "dist/index.global.js",
   "exports": {
+
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "types": "./dist/index.d.ts",
+      "browser": {
+        "import": "./dist/index.js",
+        "require": "./dist/index.cjs"
+      },
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
     },
+
     "./react": {
-      "import": "./dist/react.mjs",
-      "require": "./dist/react.cjs"
+      "types": "./dist/react.d.ts",
+      "browser": {
+        "import": "./dist/react.js",
+        "require": "./dist/react.cjs"
+      },
+      "import": "./dist/react.js",
+      "require": "./dist/react.cjs",
+      "default": "./dist/react.js"
     },
-    "./iife": "./dist/index.global.js",
-    "./types": "./dist/index.d.ts"
+
+    "./iife": "./dist/index.global.js"
+  },
+  "browser": {
+    "express": false,
+    "cors": false
   },
   "types": "dist/index.d.ts",
   "files": [
@@ -26,7 +44,9 @@
     "README.md",
     "LICENSE"
   ],
-  "sideEffects": false,
+  "sideEffects": [
+    "dist/index.global.js"
+  ],
   "scripts": {
     "build": "tsup",
     "check": "tsc -p tsconfig.json --noEmit",

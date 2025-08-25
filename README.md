@@ -1,4 +1,4 @@
-# @poulet/metrics
+# poulet
 
 📊 **SDK JavaScript léger** pour mesurer le **temps réellement actif** sur une application web, collecter des **événements métier**, permettre aux testeurs de **soumettre des bugs**, et alimenter un serveur pour **rémunérer automatiquement** le temps/bounties.
 
@@ -25,7 +25,7 @@
     * un seul onglet “leader” envoie les heartbeats,
     * jitter sur l’intervalle pour éviter les patterns parfaits.
 * **Transport** : batching, retries, offline queue, `sendBeacon` en priorité.
-* **Interopérabilité** : IIFE (CDN global `window.PouletMetrics`), ESM/CJS (`import { init } from '@poulet/metrics'`), React (`@poulet/metrics/react`).
+* **Interopérabilité** : IIFE (CDN global `window.PouletMetrics`), ESM/CJS (`import { init } from 'poulet'`), React (`poulet/react`).
 
 ---
 
@@ -34,15 +34,13 @@
 ### NPM
 
 ```bash
-npm install @poulet/metrics
-# ou
-yarn add @poulet/metrics
+npm install poulet
 ```
 
 ### CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@poulet/metrics/dist/index.global.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/poulet/dist/index.global.js" defer></script>
 <script>
   window.PouletMetrics.init({
     projectKey: 'PUB_DEMO',
@@ -61,7 +59,7 @@ yarn add @poulet/metrics
 ### Vanilla (site classique)
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@poulet/metrics/dist/index.global.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/poulet/dist/index.global.js" defer></script>
 <script>
   window.PouletMetrics.init({
     projectKey: 'PUB_123',
@@ -92,7 +90,7 @@ yarn add @poulet/metrics
 ```tsx
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { MetricsProvider, useMetrics } from '@poulet/metrics/react';
+import { MetricsProvider, useMetrics } from 'poulet/react';
 
 function Demo() {
   const { trackEvent, reportBug, setConsent } = useMetrics();
@@ -234,9 +232,9 @@ Valide → `active:true, vis:true, idle:false` + intervalle plausible.
 Disponible via :
 
 * **jsDelivr** :
-  `https://cdn.jsdelivr.net/npm/@poulet/metrics/dist/index.global.js`
+  `https://cdn.jsdelivr.net/npm/poulet/dist/index.global.js`
 * **unpkg** :
-  `https://unpkg.com/@poulet/metrics/dist/index.global.js`
+  `https://unpkg.com/poulet/dist/index.global.js`
 
 Ajoute un **SRI hash** en prod pour renforcer la sécurité.
 
@@ -251,9 +249,9 @@ npm publish --access public
 
 * **Exports** :
 
-    * `@poulet/metrics` → core ESM/CJS
-    * `@poulet/metrics/react` → adapter React
-    * `@poulet/metrics/iife` → **[bundle]()** global pour `<script>`
+    * `poulet` → core ESM/CJS
+    * `poulet/react` → adapter React
+    * `poulet/iife` → **[bundle]()** global pour `<script>`
 
 ---
 

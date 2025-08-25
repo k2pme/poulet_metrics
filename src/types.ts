@@ -4,6 +4,7 @@ export type ConsentState = 'pending' | 'granted' | 'denied';
 export type Config = {
     projectKey: string;
     endpoint: string; // e.g. https://collector.example.com
+
     consent?: { default: ConsentState };
     user?: { testerPseudoId?: string }; // pseudonyme, pas de PII
     billing?: { heartbeatSec?: number; idleSec?: number; maxHoursPerDay?: number };

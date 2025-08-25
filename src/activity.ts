@@ -15,7 +15,7 @@ export const startActivityTracking = () => {
     const un4 = onDoc('touchstart', touch);
     const un5 = on(window, 'focus', touch);
     const un6 = on(window, 'blur', touch);
-    const un7 = on(document, 'visibilitychange' as any, touch);
+    const un7 = onDoc('visibilitychange' as any, touch);
     unsub = [un1, un2, un3, un4, un5, un6, un7];
 };
 
