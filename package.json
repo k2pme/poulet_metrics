@@ -1,0 +1,63 @@
+{
+  "name": "@poulet/metrics",
+  "version": "0.1.0",
+  "description": "Mesure du temps actif, événements et bugs pour rémunérer les testeurs (Web, RGPD, anti-fraude).",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "unpkg": "dist/index.global.js",
+  "jsdelivr": "dist/index.global.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./react": {
+      "import": "./dist/react.mjs",
+      "require": "./dist/react.cjs"
+    },
+    "./iife": "./dist/index.global.js",
+    "./types": "./dist/index.d.ts"
+  },
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint .",
+    "test": "echo \"(add vitest if needed)\"",
+    "prepublishOnly": "npm run check && npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=17"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "@types/react": "^18.3.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-react": "^7.35.0",
+    "tsup": "^8.0.1",
+    "typescript": "^5.5.4"
+  },
+  "keywords": [
+    "metrics",
+    "heartbeat",
+    "web",
+    "testing",
+    "stripe",
+    "rgpd",
+    "fraud"
+  ],
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  }
+}

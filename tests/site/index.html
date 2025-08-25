@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Test @poulet/metrics</title>
+    <!-- CSP stricte : n'autorise que le CDN local et le collector -->
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self';
+               script-src 'self' http://localhost:8080 'unsafe-inline';
+               connect-src 'self' http://localhost:5055;
+               img-src 'self' blob: data:;
+               style-src 'self' 'unsafe-inline';">
+
+    <style>body{font-family:system-ui,Arial;padding:20px}</style>
+</head>
+<body>
+<h1>Test @poulet/metrics</h1>
+<p>Ouvre la console réseau pour voir les requêtes /ingest.</p>
+
+<!-- Serre le bundle IIFE de ton build local (on va le servir en statique) -->
+<script src="http://localhost:8080/index.global.js" async></script>
+
+<script>
+    // Attends que la lib soit chargée
+    window.addEventListener('load', () => {
+        const boot = () => {
+            if (!window.PouletMetrics) return setTimeout(boot, 50);
+            window.PouletMetrics.init({
+                projectKey: 'PUB_DEMO',
+                endpoint: 'http://localhost:5055',
+                consent: { default: 'pending' },
+                privacy: { dntRespect: false }, // pour tester librement
+                debug: true
+            });
+            // Simuler l'obtention du consentement :
+            setTimeout(() => window.PouletMetrics.setConsent({ analytics: true }), 1000);
+
+            // Evénements manuels de test :
+            setTimeout(() => window.PouletMetrics.trackEvent('clicked_button', { place: 'hero' }), 3000);
+            setTimeout(() => window.PouletMetrics.reportBug({ title: 'Texte coupé', severity: 'minor' }), 5000);
+        };
+        boot();
+    });
+</script>
+
+<button onclick="window.PouletMetrics?.trackEvent('cta_click',{variant:'A'})">
+    Envoyer un event
+</button>
+</body>
+</html>
